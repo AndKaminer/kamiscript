@@ -1,13 +1,17 @@
+#ifndef _TOKEN_
+#define _TOKEN_
+
 #include <string>
+#include <unordered_map>
 
 namespace token {
 
-    struct tokenType {
-        std::string type;
-    };
+    //struct tokenType {
+    //    std::string type;
+    //};
     
-    struct token {
-        tokenType type;
+    struct Token {
+        std::string type;
         std::string literal;
     };
 
@@ -30,4 +34,14 @@ namespace token {
     
     const std::string FUNCTION = "FUNCTION";
     const std::string LET = "LET";
+
+    const std::unordered_map<std::string, std::string> keywords = {
+        {"fn", FUNCTION},
+        {"let", LET}
+    };
+    
+    std::string lookupIdent(std::string ident);
+    Token newToken(std::string type, std::string literal);
 }
+
+#endif
