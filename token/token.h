@@ -23,6 +23,14 @@ namespace token {
 
     const std::string ASSIGN = "=";
     const std::string PLUS = "+";
+    const std::string MINUS = "-";
+    const std::string BANG = "!";
+    const std::string ASTERISK = "*";
+    const std::string SLASH = "/";
+    const std::string LT = "<";
+    const std::string GT = ">";
+    const std::string EQ = "==";
+    const std::string NOT_EQ = "!=";
 
     const std::string COMMA = ",";
     const std::string SEMICOLON = ";";
@@ -34,10 +42,20 @@ namespace token {
     
     const std::string FUNCTION = "FUNCTION";
     const std::string LET = "LET";
+    const std::string TRUE = "TRUE";
+    const std::string FALSE = "FALSE";
+    const std::string IF = "IF";
+    const std::string ELSE = "ELSE";
+    const std::string RETURN = "RETURN";
 
     const std::unordered_map<std::string, std::string> keywords = {
         {"fn", FUNCTION},
-        {"let", LET}
+        {"let", LET},
+        {"true", TRUE},
+        {"false", FALSE},
+        {"if", IF},
+        {"else", ELSE},
+        {"return", RETURN}
     };
     
     std::string lookupIdent(std::string ident);

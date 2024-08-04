@@ -42,6 +42,14 @@ namespace lexer {
         return l -> input.substr(position, l -> position - position);
     }
 
+    char peekChar(lexerState* l) {
+        if (l -> readPosition >= l -> input.length()) {
+            return 0;
+        } else {
+            return l -> input[l -> readPosition];
+        }
+    }
+
     token::Token nextToken(lexerState* l) {
         token::Token tok;
 
@@ -49,7 +57,37 @@ namespace lexer {
 
         switch(l -> ch) {
             case '=':
-                tok = token::newToken(token::ASSIGN, std::string(1, l -> ch));
+                if (peekChar(l) == '='){
+                    char ch = l -> ch;
+                    readChar(l);
+                    tok = token::newToken(token::EQ, std::string(1, ch) + std::string(1, l -> ch));
+                } else {
+                    tok = token::newToken(token::ASSIGN, std::string(1, l -> ch));
+                }
+                break;
+            case '-':
+                tok = token::newToken(token::MINUS, std::string(1, l -> ch));
+                break;
+            case '!':
+                if (peekChar(l) == '=') {
+                    char ch = l -> ch;
+                    readChar(l);
+                    tok = token::newToken(token::NOT_EQ, std::string(1, ch) + std::string(1, l -> ch));
+                } else {
+                    tok = token::newToken(token::BANG, std::string(1, l -> ch));
+                }
+                break;
+            case '*':
+                tok = token::newToken(token::ASTERISK, std::string(1, l -> ch));
+                break;
+            case '/':
+                tok = token::newToken(token::SLASH, std::string(1, l -> ch));
+                break;
+            case '<':
+                tok = token::newToken(token::LT, std::string(1, l -> ch));
+                break;
+            case '>':
+                tok = token::newToken(token::GT, std::string(1, l -> ch));
                 break;
             case ';':
                 tok = token::newToken(token::SEMICOLON, std::string(1, l -> ch));

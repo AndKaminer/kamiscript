@@ -22,6 +22,7 @@ namespace lexer {
     std::string readIdentifier(lexerState* l);
     void eatWhitespace(lexerState* l);
     std::string readNumber(lexerState* l);
+    char peekChar(lexerState* l);
 
 
 }
