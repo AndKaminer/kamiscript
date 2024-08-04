@@ -1,5 +1,6 @@
 #include "./lexer/lexer.h"
 #include "./token/token.h"
+#include "./repl/repl.h"
 
 #include <iostream>
 #include <vector>
@@ -38,6 +39,8 @@ int main() {
     for (ptr = res.begin(); ptr < res.end(); ptr++) {
         std::cout << ptr -> type << ' ' << ptr -> literal << '\n';
     }
+
+    repl::start();
 
     return 0;
 }
